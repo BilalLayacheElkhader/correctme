@@ -1,8 +1,7 @@
 package com.correctme.correctme.model.services.impl;
 
-import com.correctme.correctme.model.dao.AuthResponse;
+import com.correctme.correctme.model.dao.response.AuthResponse;
 import com.correctme.correctme.model.dao.request.AuthenticationRequest;
-import com.correctme.correctme.model.dao.response.RegisterRequest;
 import com.correctme.correctme.model.domain.Role;
 import com.correctme.correctme.model.domain.User;
 import com.correctme.correctme.model.repository.UserRepository;
@@ -22,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public AuthResponse register(RegisterRequest request) {
+    public AuthResponse register(AuthenticationRequest.RegisterRequest request) {
         if (request.getName() == null || request.getName().isBlank()) {
             request.setName("Anonymous");
         }

@@ -1,8 +1,7 @@
 package com.correctme.correctme.controller;
 
-import com.correctme.correctme.model.dao.AuthResponse;
+import com.correctme.correctme.model.dao.response.AuthResponse;
 import com.correctme.correctme.model.dao.request.AuthenticationRequest;
-import com.correctme.correctme.model.dao.response.RegisterRequest;
 import com.correctme.correctme.model.services.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthResponse> register(@RequestBody AuthenticationRequest.RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
     }
 
