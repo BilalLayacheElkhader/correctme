@@ -12,4 +12,14 @@ import lombok.NoArgsConstructor;
 public class AuthenticationRequest {
     private String email;
     private String password;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class RegisterRequest {
+        private String name;
+        private String email;
+        private String password;
+    }
 }
