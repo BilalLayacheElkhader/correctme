@@ -1,5 +1,6 @@
 package com.correctme.correctme.model.services.impl;
 
+import com.correctme.correctme.model.domain.User;
 import com.correctme.correctme.model.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -15,6 +16,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 @Service
@@ -71,5 +73,22 @@ public class JwtService {
 
     private Date getExpiration(String token) {
         return getClaim(token, Claims::getExpiration);
+    }
+
+
+    public void checkId(long idUser, String authHeader) {
+        String token = authHeader.substring(7);
+        String role = getRoleFromToken(token);
+        if (!role.equals("ROLE_ADMIN")) {
+            String userEmail = getUserName(token);
+            Optional<User> repoUser = userRepository.findById(idUser);
+            if (repoUser.isEmpty() || !userEmail.equals(repoUser.get().getEmail())) {
+                //throw new BadIdMatchException("Forbidden: Can't access to other players ID");
+            }
+        }
+
+    }
+    public String getRoleFromToken(String token) {
+        return getClaim(token, claims -> claims.get("role", String.class));
     }
 }
