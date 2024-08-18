@@ -4,7 +4,7 @@ import com.correctme.correctme.model.dao.response.AuthResponse;
 import com.correctme.correctme.model.dao.request.AuthenticationRequest;
 import com.correctme.correctme.model.domain.Role;
 import com.correctme.correctme.model.domain.User;
-import com.correctme.correctme.model.repository.UserRepository;
+import com.correctme.correctme.model.repository.jpa.UserRepository;
 import com.correctme.correctme.model.services.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

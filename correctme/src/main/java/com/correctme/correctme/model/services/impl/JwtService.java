@@ -1,7 +1,7 @@
 package com.correctme.correctme.model.services.impl;
 
 import com.correctme.correctme.model.domain.User;
-import com.correctme.correctme.model.repository.UserRepository;
+import com.correctme.correctme.model.repository.jpa.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

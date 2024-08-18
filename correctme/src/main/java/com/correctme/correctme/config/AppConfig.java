@@ -1,6 +1,6 @@
 package com.correctme.correctme.config;
 
-import com.correctme.correctme.model.repository.UserRepository;
+import com.correctme.correctme.model.repository.jpa.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

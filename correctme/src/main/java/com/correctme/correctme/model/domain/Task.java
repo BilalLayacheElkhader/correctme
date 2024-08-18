@@ -1,12 +1,13 @@
 package com.correctme.correctme.model.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import jakarta.persistence.Entity;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@Builder
+@AllArgsConstructor
+@Entity
 public class Task {
     private int sprint;
     private int task;

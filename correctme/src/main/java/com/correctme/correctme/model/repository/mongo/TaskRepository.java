@@ -1,4 +1,4 @@
-package com.correctme.correctme.model.repository;
+package com.correctme.correctme.model.repository.mongo;
 
 import com.correctme.correctme.model.domain.Task;
 import org.springframework.data.mongodb.repository.MongoRepository;
