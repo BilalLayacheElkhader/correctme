@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -24,38 +25,34 @@ public class TaskServiceImpl implements TaskService {
 
         Task task = mapTaskDTOToTask(taskDTO);
 
-        User corrector = assignRandomCorrector(task);
-        task.setIdUserCorrector(corrector.getId());
+        task.setIdUserCorrector(assignRandomCorrector().getId());
 
         taskRepository.save(task);
 
-        return new TaskDTO(task.getSprint(),task.getTask(),task.getLevel(),task.getComments(),task.getIdUser(),task.getIdUserCorrector());
+        return new TaskDTO(task.getSprint(),task.getTasca(),task.getLevel(),task.getComments(),task.getIdUser(),task.getIdUserCorrector());
     }
-    public User assignRandomCorrector(Task task) {
+
+    public User assignRandomCorrector(){
         List<User> availableUsers = userRepository.findByAvailableTrue();
-
-        if (availableUsers.isEmpty()) {
-            throw new IllegalStateException("NO USER AVAILABLE");
-        }
         Random random = new Random();
-        User corrector = availableUsers.get(random.nextInt(availableUsers.size()));
 
-        corrector.setAvailable(false);
-        task.setIdUserCorrector(corrector.getId());
-
-        userRepository.save(corrector);
-        taskRepository.save(task);
-
-        return corrector;
+        return Optional.ofNullable(availableUsers)
+                .filter(users -> !users.isEmpty())
+                .map(users -> {
+                    User corrector = users.get(random.nextInt(users.size() - 1) + 1);
+                    corrector.setAvailable(false);
+                    return corrector;
+                })
+                .orElseThrow(() -> new RuntimeException("No available users found"));
     }
+
     private Task mapTaskDTOToTask(TaskDTO taskDTO) {
-        return new Task(
-                taskDTO.getSprint(),
-                taskDTO.getTask(),
-                taskDTO.getLevel(),
-                taskDTO.getComments(),
-                taskDTO.getIdUser(),
-                taskDTO.getIdUserCorrector()
-        );
+        Task newTask = Task.builder()
+                .sprint(taskDTO.getSprint())
+                .tasca(taskDTO.getTasca())
+                .level(taskDTO.getLevel())
+                .idUser(taskDTO.getIdUser())
+                .build();
+        return newTask;
     }
 }

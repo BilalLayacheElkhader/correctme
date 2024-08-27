@@ -15,3 +15,7 @@ public class CorrectmeApplication {
 	}
 
 }
+//para usar @entity necesitamos id en task
+// faltaba @postmapping en controller new task
+//exception en asign random corrector
+

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 public class TaskDTO {
     private int sprint;
-    private int task;
+    private int tasca;
     private int level;
     private String comments;
     private Long idUser;

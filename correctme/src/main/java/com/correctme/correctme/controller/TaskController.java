@@ -15,7 +15,7 @@ public class TaskController {
     @Autowired
     private JwtService jwtService;
 
-
+    @PostMapping("new/{idUser}")
     public ResponseEntity<String> newTask (@PathVariable long idUser, @RequestBody TaskDTO taskDTO, @RequestHeader("Authorization") String authHeader){
         jwtService.checkId(idUser, authHeader);
         taskService.newTask(taskDTO);
