@@ -25,7 +25,7 @@ public class User implements UserDetails {
     private String password;
     private int score;
     private boolean available;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @Override

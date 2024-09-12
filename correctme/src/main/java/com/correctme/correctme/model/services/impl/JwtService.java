@@ -77,13 +77,14 @@ public class JwtService {
 
 
     public void checkId(long idUser, String authHeader) {
+
         String token = authHeader.substring(7);
         String role = getRoleFromToken(token);
         if (!role.equals("ROLE_ADMIN")) {
             String userEmail = getUserName(token);
             Optional<User> repoUser = userRepository.findById(idUser);
             if (repoUser.isEmpty() || !userEmail.equals(repoUser.get().getEmail())) {
-                //throw new BadIdMatchException("Forbidden: Can't access to other players ID");
+                throw new RuntimeException("Forbidden: Can't access to other players ID");
             }
         }
 

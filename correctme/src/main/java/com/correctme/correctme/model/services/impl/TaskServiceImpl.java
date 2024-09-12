@@ -51,6 +51,7 @@ public class TaskServiceImpl implements TaskService {
                 .sprint(taskDTO.getSprint())
                 .tasca(taskDTO.getTasca())
                 .level(taskDTO.getLevel())
+                .comments(taskDTO.getComments())
                 .idUser(taskDTO.getIdUser())
                 .build();
         return newTask;

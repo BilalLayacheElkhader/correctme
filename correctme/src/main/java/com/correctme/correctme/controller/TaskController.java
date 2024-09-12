@@ -21,5 +21,10 @@ public class TaskController {
         taskService.newTask(taskDTO);
         return ResponseEntity.ok("new task");
     }
+    @PostMapping("newtask/{idUser}")
+    public ResponseEntity<String> newTasks (@PathVariable long idUser, @RequestBody TaskDTO taskDTO){
+        taskService.newTask(taskDTO);
+        return ResponseEntity.ok("new task");
+    }
 
 }
